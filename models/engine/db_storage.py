@@ -13,7 +13,7 @@ from models.review import Review
 classes = {
     'User': User, 'Place': Place,
     'State': State, 'City': City, 'Amenity': Amenity,
-    'Review': Review, 
+    'Review': Review,
     }
 s_classes = {
     'State': State, 'City': City, 'User': User,
@@ -100,7 +100,6 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session
-
 
     def close(self):
         '''closes an instance of self'''
