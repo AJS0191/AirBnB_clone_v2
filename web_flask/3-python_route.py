@@ -1,4 +1,4 @@
-]#!/usr/bin/python3
+#!/usr/bin/python3
 """ adding second route to flask application """
 
 from flask import Flask
