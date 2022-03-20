@@ -1,0 +1,1 @@
+Holds templates for HBNB
