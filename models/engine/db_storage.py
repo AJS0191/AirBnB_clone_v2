@@ -58,7 +58,7 @@ class DBStorage:
 
             objList = []
             listDic = {}
-            for key, value in s_classes.items():
+            for key, value in classes.items():
                 objs = self.__session.query(value).all()
                 for item in objs:
                     objList.append(item)

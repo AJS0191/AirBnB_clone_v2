@@ -9,6 +9,14 @@ from os import getenv
 import models
 
 
+place_amenity = Table('place_amenity', Base.metadata,
+                              Column('place_id', String(60),
+                                     ForeignKey('places.id'), nullable=False),
+                              Column('amenity_id', String(60),
+                                     ForeignKey('amenities.id'),
+                                     nullable=False),
+                              )
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = 'places'
@@ -26,15 +34,9 @@ class Place(BaseModel, Base):
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship("Review", backref='place',
                               cascade='all, delete-orphan')
-        place_amenity = Table('place_amenity', Base.metadata,
-                              Column('place_id', String(60),
-                                     ForeignKey('places.id'), nullable=False),
-                              Column('amenity_id', String(60),
-                                     ForeignKey('amenities.id'),
-                                     nullable=False),
-                              )
-        amenities = relationship("Amenities",
-                                 secondary="place_amenities", viewonly=False)
+        amenities = relationship("Amenity",
+                                 secondary="place_amenity",backref='place_amenities',
+                                  viewonly=False)
                                 
     else:
         @property
