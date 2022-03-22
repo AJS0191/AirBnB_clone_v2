@@ -230,7 +230,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             # print(f"items are {storage.all()}")
-            for k, v in storage.all(cls).items():
+            for k, v in storage.all().items():
                 if k.split('.')[0] == cls:
                     print_list.append(str(v))
         else:
