@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+/usr/bin/python3
 """database storage engine"""
 import os
 from sqlalchemy.orm import sessionmaker
@@ -35,9 +35,9 @@ class DBStorage:
     def __init__(self):
         """initializes the engine"""
         from models.base_model import Base
-        self.__engine = create_engine(f'{self.dialect}+{self.driver}://\
-{self.user}:{self.password}@\
-{self.host}/{self.database}',
+        self.__engine = create_engine('{}+{}://\
+{}:{}@\
+{}/{}'.format(self.dialect, self.driver, self.user, self.password, self.host, self.database),
                                       pool_pre_ping=True)
         Base.metadata.create_all(self.__engine)
         if os.getenv("HBNB_ENV") == 'test':
@@ -66,7 +66,7 @@ class DBStorage:
             # print("making dict")
             for item in objList:
                 # print(str(item))
-                key = f"{item.__class__.__name__}.{item.id}"
+                key = "{}.{}".format(item.__class__.__name__, item.id)
                 listDic.update({key: item})
 
             return listDic
