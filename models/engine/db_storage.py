@@ -103,4 +103,4 @@ class DBStorage:
 
     def close(self):
         '''closes an instance of self'''
-        self.session.remove()
+        self.__session.remove()
