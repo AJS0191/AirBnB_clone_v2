@@ -39,7 +39,7 @@ class DBStorage:
 {self.user}:{self.password}@\
 {self.host}/{self.database}',
                                       pool_pre_ping=True)
-        Base.metadata.create_all(self.__engine)
+        #Base.metadata.create_all(self.__engine)
         if os.getenv("HBNB_ENV") == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
@@ -96,10 +96,10 @@ class DBStorage:
         from sqlalchemy.orm import scoped_session
         from models.base_model import Base, BaseModel
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine,
-                                       expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session
+        self.__session = scoped_session(sessionmaker(bind=self.__engine,
+                                                      expire_on_commit=False))
+        #Session = scoped_session(session_factory)
+        #self.__session = Session
 
     def close(self):
         '''closes an instance of self'''
