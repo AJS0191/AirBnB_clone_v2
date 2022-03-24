@@ -11,7 +11,7 @@
         <UL>
 	  {% for cities in states.cities | sort(attribute='name') %}
 	  <LI>{{ cities.id }}: <B>{{ cities.name }}</B></LI>
-	{% endfor %}
+	  {% endfor %}
 	</UL>
       {% endfor %}
 
